@@ -1,6 +1,6 @@
 mkdir /home/"$USER"/KShell
 sudo dnf install python3
-sudo dnf install python3-tk
+sudo dnf install python3-tkinter
 sudo dnf install python3-pip
 sudo pip3 install pyinstaller
 pyinstaller kshell.py
@@ -10,4 +10,6 @@ cd /home/"$USER"/KShell/
 echo "You are now in the home directory of your KShell application!"
 echo "export PATH='$PATH':/home/$USER/KShell/dist/kshell" >> ~/.bashrc
 echo "Launching KShell... to run, use the 'kshell' command from any directory in Terminal!"
+source ~/.bashrc
+"Sourced ~/.bashrc, beginning to run kshell..."
 kshell
