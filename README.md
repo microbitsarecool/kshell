@@ -31,7 +31,7 @@ Fifth step: **Make sure you have your KShell home directory set in your path! To
 you see something like: */home/{username}/KShell* in the resulting string, you're set! Otherwise, please report
 it to *microbitsarecool@gmail.com* or comment on the KShell repo page. Also, please report any failed installations
 to the said email address as well. Or, comment on the repo page.**   
-Sixth step: Run this command to start KShell: *kshell_base*. Report any bugs to the creator's email address or
+Sixth step: Run this command to start KShell: *kshell*. Report any bugs to the creator's email address or
 comment on the repo page. If you need help on commands, type a single question mark: *'?'* for a simple list or
 read the documentation.txt file for a more detailed documentation.
 
