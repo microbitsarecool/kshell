@@ -25,7 +25,7 @@ linux_deb_install.sh | For Debian/Ubuntu based systems
 linux_rpm_install.sh | For RedHat/Fedora/CentOS systems
 linux_suse_install.sh | For openSUSE based systems
 mac_install.sh | For macOS systems
-No installer script (use ZIP) | For Windows systems
+No installer script (follow instructions below) | For Windows systems
 
 ***\*Please note, for macOS and Windows users, that you must 
 have Python 3 (you can get it at https://www.python.org/downloads/)
@@ -44,10 +44,10 @@ read the documentation.txt file for a more detailed documentation.
 
 ***For Windows users***
 
-To install, simply download the ZIP or clone using git and then create a home directory of your choice. Then,   
-move all the files and subdirectories from the KShell repo into your home repository. Next, open a command prompt
-window and navigate to your home directory for KShell. Then, type these commands (in order and make sure you have   
-python installed):
+To install, simply download the ZIP or clone using git and then create a home directory (has to be *c:\\Users\\[user]\\KShell*). 
+Then, move all the files and subdirectories from the KShell repo into your home repository. Next, open a command 
+prompt window and navigate to your home directory for KShell. Then, type these commands (in order and make sure you 
+have python installed):
 
 1. ***pip install pyinstaller***
 2. ***pyinstaller kshell.py***
@@ -57,5 +57,5 @@ python installed):
 Next, you can repeat the steps 3-4 to run kshell.exe. Or, if you'd rather add this directory to your path environment:   
 ***[home-directory]\dist\kshell***, you can then simply run ***kshell.exe*** from anywhere.
 
-***\*Note for Windows users: the recommended path for your home directory is c:\\Users\\[user]\\KShell but it is
-ultimately up to you.***
+***\*Note for Windows users: the path for your home directory has to be: c:\\Users\\[user]\\KShell or KShell
+won't work!***
