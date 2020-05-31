@@ -1,0 +1,6 @@
+all-caps ~ Used to generate text such as 'HELLO' and 'WHAT THE HECK'S GOING ON OUT HERE?'
+no-caps ~ Used to generate lowercase text (opposite of all-caps), ex. 'hello' and 'i ain't a man'
+cap-first ~ Capitalizes first letter in string, ex. 'hello, there!' to 'Hello, there!'
+title ~ Capitalizes every first letter in string, ex. 'a harmonic band' to 'A Harmonic Band'
+swapped-case ~ Swaps case (lower to upper, vice versa) in string, ex. 'hELlO THeRE!' to 'HelLo thEre!'
+normal ~ Does not change text [DON'T TYPE AN OPTION FOR normal], ex. 'hello, Randy!' stays 'hello, Randy!'
