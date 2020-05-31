@@ -1,0 +1,799 @@
+This is the Official Documentation for the KShell.
+KShell version 0.41 (Development Version).
+
+-------------------------------------------------------------------------
+
+SUMMARY.
+
+    The KShell is a simple text-based console which takes
+commands (see COMMANDS) and executes them. The KShell takes
+the user's input and converts it into an array by splitting
+the string of input by the " " character. The commands are
+then looped through and stripped of whitespace. Finally,
+a series of if-tests are used to execute the commands.
+Some commands take options, some don't. For example, the
+'say' command takes two options and the 'help' command
+takes none.
+
+-------------------------------------------------------------------------
+
+ABOUT.
+
+    i. Origin of KShell
+        KShell began as a school project for my
+        junior high computer-science class. At the time,
+        the project had no name. It was not very in-depth
+        to begin with. For example, the 'draw' command did
+        not begin with three options, it had one ('rect' which
+        is now currently 'square'). Also, you did not type
+        commands like this:
+
+            command parameter another-parameter
+
+        You had to type them like this:
+
+            command : parameter : another-parameter
+
+        Then like this:
+
+            command > parameter > another-parameter
+
+        Then this:
+
+            command | parameter | another-parameter
+
+        And finally, the current syntax:
+
+            command parameter another-parameter
+
+        I implemented the ':', '>' and '|' separators
+        because at the time, I was testing which worked
+        best and I eventually found out how to implement
+        a space separator (" ", the current separator).
+        And like previously said, there were minimal
+        options for commands. For example, 'draw' started
+        out with this syntax:
+
+            draw : [shape] // shape had only one option at the time
+
+            // that option was 'rect' so you would type:
+
+            draw : rect // 'rect' was the option for the now current 'square'
+
+    ii. How KShell Got Its Name
+        KShell seems like a weird name at first, but there's
+        a reason that the KShell application got its name.
+        First off, my name Keegan. Note that my name starts
+        with a 'K'. Can you see where this is going? Next,
+        I was inspired by Java's naming of their interactive
+        shell, JShell. Now where did that 'Shell' part come
+        from? For all of you who are not computer geeks, a
+        shell is simply an interactive text based prompt.
+        One famous example of a shell is the UNIX Bash shell.
+        Bash is used by Linux and UNIX systems. Here are
+        some examples of Bash:
+
+            $ mv /home/kshell/system /usr/local
+            $ cp /home/kshell/project/kshell_base.py /usr/bin
+            $ echo "Hello world!"
+            $ echo $PATH
+
+        The '$' character that precedes each command is simply
+        a shortened version of the Bash prompt. Usually the
+        prompt is something like this:
+
+            kshell@kshell~/Documents$ [command goes here]
+
+        Nonetheless, that is how KShell got its name. Here's
+        a quick breakdown:
+
+            K ~ stands for my first initial
+            Shell ~ a text-based interactive prompt (such as bash, zsh, csh, tcsh, jshell, etc.)
+
+-------------------------------------------------------------------------
+
+COMMANDS.
+
+Here are the commands (listed alphabetically):
+
+- append
+- convert-bases
+- delete
+- documentation
+- draw
+- echo-mode
+- exit
+- goto-url
+- help
+- random-number
+- read
+- say
+- say-options
+- say-reverse
+- search
+- shapes
+- time
+- to-base-10
+- write
+
+-------------------------------------------------------------------------
+
+COMMAND USAGES.
+
+1. append
+
+append is like 'write' (see #19) but it does not overwrite
+each time it is executed. append also writes to the end of
+a file each time it is executed. append has the same syntax
+as write:
+
+The syntax for this command is: append [file] [string]
+
+append's string parameter has a special string that can be passed
+as an argument: '\BLANK'. This string denotes a blank line and
+adds a blank line to a file. So, 'append test.txt \BLANK' adds
+a blank line to the end of test.txt file. Any other string
+means exactly that string. So, if you've typed 'test' as
+an argument to the file parameter and 'What up, boy?' as an
+argument to the string parameter, you've told the command
+to write 'What up, boy?' to the end 'test'.
+
+Potential Errors for append:
+
+append has three known potential errors when using:
+
+FieldNotProvidedError ~ This error occurs if the user fails
+to provide arguments for one or more of the parameters.
+
+ProjectFilesError ~ This error occurs if you try to append
+to a project file (see Project Files).
+
+"You do not have permission to write to this file. :/" ~
+This error is rare, but it occurs when you do not have
+permission to append to the file.
+
+2. convert-bases
+
+convert-bases is a command that allows you to convert a
+base-10 integer (10, -87, 598, etc.) to different bases.
+The currently supported bases for this command include:
+
+- base-16 (hexadecimal)
+- base-8 (octal)
+- base-2 (binary)
+
+The syntax for this command is: convert-bases [base] [int]
+
+The command takes 16, 8, or 2 as an argument for the base
+parameter. If you've typed 16, you have told the command to
+convert your argument for the int parameter into base-16, or
+hexadecimal. The same applies for the other bases. Next, the
+command takes any base-10 number as an argument for the int
+parameter. This is the number which will be converted into
+the base which you've specified.
+
+Potential Errors For convert-bases:
+
+convert-bases has three known potential errors when using:
+
+BaseNotSupported ~ This error occurs when
+the user types in a base (such as 18) that is not supported
+for the base parameter.
+
+FieldNotProvidedError ~ This message will
+be printed to the screen in red text if the user fails to
+provide arguments for any of the parameters (base, int).
+
+IncorrectIntegerBaseError ~ This message will
+be printed to the screen in red text if the user fails to
+provide a base-10 number for the int parameter. Such an error
+would occur if the user types 'hello' as an argument for the
+int parameter.
+
+3. delete
+
+delete is a command that allows you to delete a file.
+
+*Note: Currently, delete only allows you to delete a file
+       in the current directory. This will be fixed soon.
+
+*WARNING: Use this command with caution, because once you
+          delete the file, it's gone!
+
+The syntax for this command is: delete [file]
+
+The command takes a filename (test.txt, Hello.c, what.rtf, etc.)
+as an argument for the file parameter. If you've typed test.R, you've
+told the command to delete the file 'test.R' from your system.
+
+Potential Errors for delete:
+
+delete has two known potential errors when using:
+
+FieldNotProvidedError ~ This message will
+be printed to the screen in red text if the user fails
+to provide an argument for the file parameter.
+
+"'file' does not exist!" ~ This error will show the
+filename in cyan text in place of 'file' followed by
+'does not exist!' in red text. This error will occur
+if the system finds that the file does not exist.
+
+4. documentation
+
+(This command is not ready for documentation yet. :/)
+
+5. draw
+
+draw is a command that draws different shapes based on
+what you've provided for the shape parameter. The command
+currently supports three shapes:
+
+- circle
+- square
+- triangle
+
+The syntax for this command is: draw [shape]
+
+The command takes a shape name as an argument for the
+shape parameter. Use ONLY the supported names and make
+sure you don't misspell the name. If you've typed square
+as an argument, you've told the command to draw a square.
+
+Potential Errors for draw:
+
+draw has two known potential errors when using:
+
+InvalidShapeError ~ This error message will be printed
+in red text if the user fails to provide a supported shape
+for the shape parameter.
+
+FieldNotProvidedError ~ This error message will be
+printed to the screen in red text if the user fails to
+provide an argument for the shape parameter.
+
+6. echo-mode
+
+echo-mode is a command that toggles echo mode on and off.
+Echo mode simply echoes whatever the user types into the
+prompt.
+
+The syntax for this command is: echo-mode [boolean]
+
+The command takes a boolean (true or false) as an argument.
+If you've typed 'true' as an argument for the boolean
+parameter, you've told the command to turn echo mode on.
+
+Potential Errors for echo-mode:
+
+echo-mode has two known potential errors when using:
+
+FieldNotProvidedError ~ This error occurs when the
+user fails to provide an argument for the boolean
+parameter
+
+UnknownTypeError ~ This error occurs when the user
+does not type in a boolean. A boolean can either be
+'true' or 'false'. Anything else would cause this
+error.
+
+7. exit
+
+exit is a command that exits the current running KShell.
+
+The syntax for this command is: exit
+
+exit takes no arguments!
+
+Potential Errors for exit:
+
+exit has no known potential errors when using.
+
+8. goto-url
+
+goto-url is a command that allows the user to open
+their browser to a specified URL. The URL can have a
+leading http://www. or https://www. or it doesn't have
+to.
+
+The syntax for this command is: goto-url [URL]
+
+The command takes a URL address as an argument for the
+URL parameter. As previously said, the URL can but does
+not have to have a preceding http://www. or https://www.
+If you've typed google.com or https://www.google.com as
+an argument, you've told the command to open google.com
+in your web browser.
+
+Potential Errors for goto-url:
+
+goto-url has one known potential error when using:
+
+FieldNotProvidedError ~ This error message will be printed
+in red text if the user fails to provide an argument for the
+URL parameter.
+
+9. help
+
+help is a command that shows all the available commands and
+their syntax. It is a smaller, not as in-depth version of the
+'documentation' command.
+
+The syntax for this command is: help
+
+help takes no arguments!
+
+Potential Errors for help:
+
+help has no known potential errors when using.
+
+10. random-number
+
+random-number is a command that generates a random number
+based on the argument you provide for the top-int parameter.
+It generates a random number from 0 to top-int.
+
+The syntax for this command is: random-number [top-int]
+
+The command takes a base-10 number as an argument for the
+top-int parameter. If you've typed 100 as an argument for the
+top-int parameter, you've told the command to generate a
+random number from 0 to 100.
+
+Potential Errors for random-number:
+
+random-number has two known potential errors when using:
+
+FieldNotProvidedError ~ This error will be printed in
+red text if the user fails to provide an argument for the
+top-int parameter.
+
+IncorrectIntegerBaseError ~ This error will be
+printed in red text if the user fails to provide a base-10
+number as an argument for the top-int parameter. Such an error
+would occur if the user typed 'hello' as an argument for the
+top-int parameter.
+
+11. read
+
+read is a command that reads a file's contents and prints them
+to the screen.
+
+The syntax for this command is: read [file]
+
+The command takes a filename as an argument for the file
+parameter. If you've typed 'helloworld.c' as an argument
+for the file parameter, you've told the command to read the
+helloworld.c file and print its contents to the screen.
+
+Potential Errors for read:
+
+read has three known potential errors when using:
+
+FieldNotProvidedError ~ This error will be printed in
+red text if the user fails to provide an argument for the file
+parameter.
+
+"File does not exist!" ~ This error will be printed in red text
+if the system finds that the specified file does not exist.
+
+"You do not have permission to read this file. :/" ~ This error
+is rare, but it occurs when you do not have permission to access
+the contents of a file.
+
+12. say
+
+say is a command that echoes user input and has six different options
+of displaying the input. say currently supports these six options:
+
+- all-caps
+- no-caps
+- cap-first
+- title
+- swapped-case
+- normal [don't type anything for option to achieve normal output]
+
+The syntax for this command is: say [option] [string]
+
+say outputs normally if you don't provide an option. However, the other
+options have to be typed in as an argument to the option parameter. all-caps
+capitalizes every letter, no-caps does the opposite, cap-first capitalizes
+the first letter in your string argument, title capitalizes the first letter
+of each word in your string argument, and swapped-case makes all uppercase
+letters go lowercase and vice versa. If you've typed all-caps for your
+option and 'hello there' for your string, you've told the command to output
+'hello there' as 'HELLO THERE'.
+
+Potential Errors for say:
+
+say has one known potential error when using:
+
+FieldNotProvidedError ~ This error occurs when the user
+fails to provide any argument for the string parameter.
+
+13. say-options
+
+say-options is a command that lists all the supported options for
+the 'say' command.
+
+The syntax for this command is: say-options
+
+say-options takes no arguments!
+
+Potential Errors for say-options:
+
+say-options has no known potential errors when using.
+
+14. say-reverse
+
+say-reverse is the sister of the 'say' command. It takes user input
+and outputs it backwards.
+
+The syntax for this command is: say-reverse [string]
+
+say-reverse takes one argument: the string argument. If you've typed
+'hello' as an argument for the string parameter, you've told the command
+to output 'hello' as 'olleh'.
+
+Potential Errors for say-reverse:
+
+say-reverse has one known potential error when using:
+
+FieldNotProvidedError ~ This error occurs for the same reason
+it does for the 'say' command: because the user fails to provide an
+argument for the string parameter.
+
+15. search
+
+search is a command that searches for a substring in a string.
+
+*WARNING: search's substring parameter cannot have spaces in it
+          yet. This will be fixed at some point, but keep this in
+          mind
+
+The syntax for this command is: search [substring] [string]
+
+search takes two arguments: substring and string. search tries
+to find an instance of the substring in the string. So, if you've
+typed 'hash' as an argument for the substring parameter and 'hash
+browns' as an argument for the string parameter, you've told the
+command to search for an instance of 'hash' in the string 'hash
+browns' and to output a success message if an instance was found.
+
+Potential Errors for search:
+
+search has two known potential errors when using:
+
+InstanceNotFoundError ~ This isn't a serious error at all,
+but it occurs when search could not find an instance of the
+substring in the string.
+
+FieldNotProvidedError ~ This error occurs when
+the user fails to provide an argument for the substring and/or
+string parameters.
+
+16. shapes
+
+shapes is a command that displays the supported shapes that can
+be used with the 'draw' command.
+
+The syntax for this command is: shapes
+
+shapes takes no arguments!
+
+Potential Errors for shapes:
+
+shapes has no known potential errors when using.
+
+17. time
+
+time is a command that displays the current time in this
+format: YYYY-MM-DD HH:MM:SS.mm
+
+*Note: time will be getting new features soon that include
+       more personalized time, such as getting the year,
+       month, day, hour, minutes, seconds, milliseconds,
+       time, date (YYYY-MM-DD), or the whole date (YYYY-MM-DD HH:MM:SS.mm)
+
+The syntax for this command is: time
+
+time takes no arguments!
+
+Potential Errors for time:
+
+time has no known potential errors when using.
+
+18. to-base-10
+
+to-base-10 is a command that allows you to convert different
+base integers (hex, octal, binary) to a base 10 number.
+The currently supported bases for this command include:
+
+- base-16 (hexadecimal) ex. 0x44
+- base-8 (octal) ex. 0o104
+- base-2 (binary) ex. 0b1000100
+
+The syntax for this command is: to-base-10 [int]
+
+The command takes a hexadecimal, octal, or binary number
+(see supported bases) as an argument for the int parameter.
+If you've typed 0x44, you have told the command to convert your
+argument for the int parameter into base-10. The same applies
+for the other bases.
+
+Potential Errors For to-base-10:
+
+to-base-10 has three known potential errors when using:
+
+BaseNotSupportedError ~ This error occurs when
+the user types in a base number that is not supported
+for the int parameter.
+
+FieldNotProvidedError ~ This message will
+be printed to the screen in red text if the user fails to
+provide an argument for the int parameter.
+
+IncorrectIntegerBaseError ~ This error occurs if the user types
+in the wrong digits for a base. For example, providing the "octal"
+number, 0o109, as an argument for the int parameter, would cause
+this error to occur because octal numbers only support digits 0 to 7,
+and the user typed a digit 9.
+
+19. write
+
+write is a command that can be used to write to a file.
+
+*WARNING: Use this command with caution because every time
+          you write to the same file, it overwrites it!
+
+*Note: If you want to write to a file without overwriting
+       it each time see #1 ('append').
+
+The syntax for this command is: write [file] [string]
+
+write takes a filename for the file parameter and then
+writes whatever you provided as an argument for the
+string parameter to the file. So, if you've typed
+'test.txt' for the file and 'Hello there!' for the
+string, you've told the command to write 'Hello there!'
+to test.txt.
+
+Potential Errors for write:
+
+FieldNotProvidedError ~ This error
+occurs when the user fails to provide arguments for the
+parameters (file, string).
+
+ProjectFilesError ~ This error is raised
+when the user tries to overwrite a project
+file (see Project Files).
+
+"You do not have permission to write to this file. :/"
+~ This error is rare, but it occurs when you do not have
+permission to write to a file.
+
+-------------------------------------------------------------------------
+
+COMMENTS IN KSHELL.
+
+Comments were a feature that were added in KShell Development
+Version 0.41. Comments are ignored by the KShell interpreter
+and do not execute anything. Commands can say anything you
+want; all they do is describe what you're doing or comment on
+something. Here is the syntax (as of Dev. Version 0.41):
+
+    // [comment goes here]
+
+There's another way to type a comment as well:
+
+    comment: [comment goes here]
+
+Please note the spaces in between the '//' and the actual
+comment. This space is important! If you type '//comment',
+the interpreter will throw an error because commands are
+divided by spaces, not '//', so if you type '//comment',
+the interpreter thinks you're trying to execute a command
+called '//comment'. The same applies for the alternate
+syntax as well! Do not type '//comment' or 'comment:comment'!
+
+Now that we have the rules down, let's show you a KShell
+session that uses comments:
+
+    KShell: // this command says 'hello'
+    KShell: say hello
+    hello
+    KShell: comment: this command goes to google.com
+    KShell: goto-url google.com
+    [browser opens in background]
+    KShell: // this exits the session
+    KShell: exit
+    Bye!
+
+Have fun using this feature! It won't go anywhere!
+
+-------------------------------------------------------------------------
+
+COMMAND ALIASES.
+
+Every command that KShell can execute has a
+shorter name, or an alias. The list of supported
+command aliases along with its corresponding command
+is listed here:
+
+s ~ say
+srev ~ say-reverse
+gss ~ search
+rd ~ read
+wrt ~ write
+apd ~ append
+del ~ delete
+gtu ~ goto-url
+dr ~ draw
+tbt ~ to-base-10
+cvb ~ convert-bases
+rnd ~ random-number
+ecm ~ echo-mode
+doc ~ documentation
+tm ~ time
+shp ~ shapes
+sopt ~ say-options
+? ~ help
+x! ~ exit
+
+-------------------------------------------------------------------------
+
+ERRORS AND EXCEPTIONS.
+
+List of Errors:
+
+- StandardException
+- FieldNotProvidedError
+- BaseNotSupportedError
+- IncorrectIntegerBaseError
+- UnknownTypeError
+- ProjectFilesError
+- InstanceNotFoundError
+- InvalidShapeError
+- CommandDoesNotExistError
+
+1. StandardException
+
+In the current version of KShell, StandardException is never encountered.
+It is a base error for all the other errors. The StandardException class
+inherits from Python's Exception class. The code for this class is as follows:
+
+class StandardException(Exception):
+    """Base exception for KShell"""
+    pass
+
+2. FieldNotProvidedError
+
+FieldNotProvidedError is encountered when the user does not provide enough
+arguments for a command's parameters. It is one of the most common errors and
+its class inherits from StandardException. The code is here:
+
+class FieldNotProvidedError(StandardException):
+    """Exception is raised when command fields are not provided by the user"""
+    pass
+
+3. BaseNotSupportedError
+
+BaseNotSupportedError is encountered with the 'to-base-10' and 'convert-bases' command.
+It is raised when an integer's base is unknown or not supported. It also inherits
+from StandardException. Here's the code:
+
+class BaseNotSupportedError(StandardException):
+    """Base exception for integer base errors"""
+    pass
+
+4. IncorrectIntegerBaseError
+
+IncorrectIntegerBaseError is raised when 'convert-bases' and 'to-base-10' receive the
+wrong base or the base is right but does not use the right digits (in order of the commands,
+respectively). It inherits from StandardException. Here's the code:
+
+class IncorrectIntegerBaseError(StandardException):
+    """Exception raised if an integer has an incorrect base"""
+    pass
+
+5. UnknownTypeError
+
+UnknownTypeError occurs when 'echo-mode' does not receive a boolean as an argument.
+It inherits from StandardException. Here is the code:
+
+class UnknownTypeError(StandardException):
+    """Exception raised if a boolean or another type is unknown"""
+    pass
+
+6. ProjectFilesError
+
+ProjectFilesError is raised when 'write', 'read', or 'delete' attempts to modify or read
+project files. It inherits from StandardException. Here's the code:
+
+class ProjectFilesError(StandardException):
+    """Exception raised if an attempt to modify project files occur"""
+    pass
+
+7. InstanceNotFoundError
+
+InstanceNotFoundError is encountered when using the 'search' command. It inherits
+from StandardException and is raised when an instance of a substring is not found.
+Here's the code:
+
+class InstanceNotFoundError(StandardException):
+    """Exception is raised when 'search' cannot find an instance"""
+    pass
+
+8. InvalidShapeError
+
+InvalidShapeError is encountered while using the 'draw' command. It inherits from
+StandardException and is encountered when a shape is not supported by the 'draw'
+command. Here's the code:
+
+class InvalidShapeError(StandardException):
+    """Exception is raised when 'draw' receives an invalid shape"""
+    pass
+
+9. CommandDoesNotExistError
+
+CommandDoesNotExistError occurs when a user either mistypes a command or types a
+command that does not exist. It inherits from StandardException. Here's the code:
+
+class CommandDoesNotExistError(StandardException):
+    """Exception is raised when a command that does not exist is typed"""
+    pass
+
+-------------------------------------------------------------------------
+
+PROJECT FILES.
+
+Your KShell application's files should look something like this (go to
+your system's file manager to verify.):
+
+kshell (Main Project Directory) >
+    command_options (Subdirectory) >
+        help-command.txt
+        say-options.txt
+        shapes.txt
+    invalid_digits (Subdirectory) >
+        invalid_bin.txt
+        invalid_hex.txt
+        invalid_oct.txt
+    documentation.txt (file)
+    functions.py (file)
+    kshell_base.py (file)
+    kshell_exceptions.py (file)
+    readme.txt (file)
+    text_colors.py (file)
+
+If this is not the case, you may have deleted a directory/file. All files
+and directories in the above tree are important to the KShell application.
+Even if one of these files were deleted, KShell might still run, but you
+may have disabled a command to run. So PLEASE read the following warning!
+
+*WARNING: If you should wish for your KShell installation to work properly,
+          do not delete any files or directories (especially the KShell
+          main directory!). There ARE safeguards in place when using
+          KShell; you cannot delete, read or modify these files or it
+          will cause an error (see ProjectFilesError in Errors and Exceptions).
+          However, these errors do not disable you from being able to modify
+          the files outside the program. If you open these files in an editor,
+          do so at your own risk! If you know what you are doing, then please
+          proceed. However, if you DON'T know, then I advise you to close the
+          editor and to NOT save any modifications. If you don't follow this
+          advice, however, I will not be held responsible for the damage you
+          may inflict upon your installation.
+
+*Note: The only exception to this safeguard for protecting project files
+       is that you can use the 'read' command on the documentation.txt
+       and readme.txt files. Other than that, 'read', 'write', or 'delete'
+       cannot use project files.
+
+
+-------------------------------------------------------------------------
+
+END OF DOCUMENTATION.
+
+Please report any bugs or errors you come across to
+microbitsarecool@gmail.com. Further documentation will
+be written as needed.
