@@ -26,6 +26,9 @@ linux_rpm_install.sh | For RedHat/Fedora/CentOS systems
 linux_suse_install.sh | For openSUSE based systems
 mac_install.sh | For macOS systems
 
+***\*Please note, for macOS users, that you must have Python 3 (you can get it at https://www.python.org/downloads/mac-osx/)   
+before you can run the installer script!***
+
 Fourth step: *bash {scriptname.sh}*, obviously replace *scriptname* with that of the corresponding shell script   
 Fifth step: **Make sure you have your KShell home directory set in your path! To do this: use *echo $PATH*. If  
 you see something like: */home/{username}/KShell* in the resulting string, you're set! Otherwise, please report
