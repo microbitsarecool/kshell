@@ -25,9 +25,13 @@ linux_deb_install.sh | For Debian/Ubuntu based systems
 linux_rpm_install.sh | For RedHat/Fedora/CentOS systems
 linux_suse_install.sh | For openSUSE based systems
 mac_install.sh | For macOS systems
+No installer script (use ZIP) | For Windows systems
 
-***\*Please note, for macOS users, that you must have Python 3 (you can get it at https://www.python.org/downloads/mac-osx/)   
+***\*Please note, for macOS and Windows users, that you must 
+have Python 3 (you can get it at https://www.python.org/downloads/)
 before you can run the installer script!***
+
+***Installing using installer scripts***  *(Not for Windows users)!!!*
 
 Fourth step: *bash {scriptname.sh}*, obviously replace *scriptname* with that of the corresponding shell script   
 Fifth step: **Make sure you have your KShell home directory set in your path! To do this: use *echo $PATH*. If  
@@ -38,6 +42,20 @@ Sixth step: Run this command to start KShell: *kshell*. Report any bugs to the c
 comment on the repo page. If you need help on commands, type a single question mark: *'?'* for a simple list or
 read the documentation.txt file for a more detailed documentation.
 
-As of right now, we are currently working on a script installer for
-Windows users. As a result, Windows KShell will be temporarily
-unavailable. 
+***For Windows users***
+
+To install, simply download the ZIP or clone using git and then create a home directory of your choice. Then,   
+move all the files and subdirectories from the KShell repo into your home repository. Next, open a command prompt
+window and navigate to your home directory for KShell. Then, type these commands (in order and make sure you have   
+python installed):
+
+1. ***pip install pyinstaller***
+2. ***pyinstaller kshell.py***
+3. ***cd dist\\kshell*** (This navigates into the executable's directory)
+4. ***kshell.exe*** (This runs kshell)
+
+Next, you can repeat the steps 3-4 to run kshell.exe. Or, if you'd rather add this directory to your path environment:   
+***[home-directory]\dist\kshell***, you can then simply run ***kshell.exe*** from anywhere.
+
+***\*Note for Windows users: the recommended path for your home directory is c:\\Users\\[user]\\KShell but it is
+ultimately up to you.***
