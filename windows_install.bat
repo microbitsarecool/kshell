@@ -1,7 +1,7 @@
 mkdir c:\Users\%username%\KShell
 pip install pyinstaller
 pyinstaller kshell.py
-for %i in (*) do if not %i == windows_install.bat move %i c:\Users\%username%\KShell
+xcopy "*" "c:\Users\%username%\KShell" /exclude:windows_install.bat /y
 echo "Successfully installed in your home directory (C:\Users\[user]\KShell)!"
 cd c:\Users\%username%\KShell
 echo "You are in the home directory of KShell! Do not move it or its files."
