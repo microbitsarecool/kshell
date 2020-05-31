@@ -1,6 +1,6 @@
 mkdir /home/"$USER"/KShell
 sudo zypper install python3
-sudo zypper install python3-tk
+sudo zypper install python3-tkinter
 sudo zypper install python3-pip
 sudo pip3 install pyinstaller
 pyinstaller kshell.py
