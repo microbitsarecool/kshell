@@ -14,11 +14,13 @@ system = platform.system()
 user = getpass.getuser()
 
 if system == 'Windows':
-    command_options = PureWindowsPath(f'c:/Users/{user}/PycharmProjects/kshell/command_options/')
-    invalid_digits = PureWindowsPath(f'c:/Users/{user}/PycharmProjects/kshell/invalid_digits')
+    command_options = PureWindowsPath(f'c:/Users/{user}/KShell/command_options/')
+    invalid_digits = PureWindowsPath(f'c:/Users/{user}/KShell/invalid_digits')
+    home_path = PureWindowsPath(f'c:/Users/{user}/KShell')
 else:
     command_options = Path(f'/home/{user}/KShell/command_options')
-    invalid_digits = Path(f'/home/{user}/KShell/command_options')
+    invalid_digits = Path(f'/home/{user}/KShell/invalid_digits')
+    home_path = Path(f'/home/{user}/KShell')
 
 def load():
     print("Loading KShell... ")
@@ -354,7 +356,7 @@ def random_number(commands):
 
 def read_documentation():
     """This function reads the documentation.txt file"""
-    with open("documentation.txt", "rt") as fin:
+    with open(home_path / "documentation.txt", "rt") as fin:
         for line in fin:
             txt.print_cyan(line.rstrip())
 
