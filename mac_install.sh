@@ -1,6 +1,6 @@
 user=$(id -un)
 mkdir /home/"$user"/KShell
-pip install pyinstaller
+sudo pip3 install pyinstaller
 pyinstaller kshell.py
 mv * /home/"$user"/KShell
 echo "Successfully moved files to directory /home/$user/KShell/"
