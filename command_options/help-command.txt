@@ -1,0 +1,19 @@
+say [option] [string] ~ outputs string based on option
+say-reverse [string] ~ outputs string, but reversed
+search [substring] [string] ~ searches for substring instance in string
+read [file] ~ reads contents of a file
+write [file] [string] ~ writes string to file, but overwrites each time
+append [file] [string] ~ writes string to end of file, does not overwrite; '\BLANK' string denotes blank line
+delete [file] ~ deletes the selected file
+goto-url [url-name] ~ opens your browser with the specified url
+draw [shape] ~ draws shape; use command 'shapes' for all shapes
+to-base-10 [int] ~ converts hex, octal, and binary to base 10
+convert-bases [base] [int] ~  converts base-10 int to hex, octal, or binary
+random-number [top-int] ~ generates random number from 0 to top-int
+echo-mode [boolean] ~ toggles echo mode based on boolean
+documentation ~ returns documentation from a file called documentation
+time ~ gets current time
+shapes ~ returns available shapes that can be used with 'draw'
+say-options ~ returns available options for 'say' command
+help ~ returns this information about all commands
+exit ~ exits the interactive shell
