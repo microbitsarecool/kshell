@@ -1,5 +1,6 @@
 # kshell
-The Official KShell Repository for KShell Installations
+The Official KShell Repository for KShell Installations   
+*This project is licensed under the terms of the MIT License!*
 
 This is the Official KShell Repo which contains all source code and
 installer scripts that create binary executables for your operating
